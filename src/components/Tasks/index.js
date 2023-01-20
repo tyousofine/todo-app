@@ -4,6 +4,7 @@ import TaskDetail from '../TaskDetail';
 
 export default function Tasks(props) {
 
+    // initial array of hard coded data objects 
     const [tasks, setTasks] = useState([
         {
             id: uuid(),
@@ -53,12 +54,24 @@ export default function Tasks(props) {
         setTasks([]);
     }
 
+    // add new task handler (non dynamic)
+    const handleAddTask = () => {
+        const newTasksArray = [...tasks,
+        {
+            id: uuid(),
+            task: "new task",
+            status: false
+        }]
+        setTasks(newTasksArray);
+    }
+
     return (
         <>
             <div className='title-bar'>
                 <h1>These are the tasks</h1>
-                <button>Add Task</button>
+                <button onClick={handleAddTask}>Add Task</button>
             </div>
+
             {tasks.map((data, index) =>
             (
                 <TaskDetail
@@ -70,12 +83,9 @@ export default function Tasks(props) {
                     toDelete={handleDelete}
                 />
             ))}
-            <div className="clear-btn">
-                <button
-                    onClick={handleClearTasks}>
-                    Clear Tasks
-                </button>
-            </div>
+
+            <button onClick={handleClearTasks}>Clear Tasks</button>
+
         </>
     )
 }
