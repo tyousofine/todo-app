@@ -1,0 +1,62 @@
+:root {
+    --main-theme-color: #5095bf;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Header/navbar section */
+.header {
+    margin-bottom: 2em;
+    color: var(--main-theme-color);        
+}
+
+/* main container section */
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.title-bar button {
+    color: white;
+    border-color: var(--main-theme-color);
+    background-color: var(--main-theme-color);
+    border-radius: 4px;
+    height: 2em;
+    width: 6em;    
+}
+
+.content {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;    
+}
+
+/* task detail cards section */
+.task-details {        
+    border-bottom: 1px solid grey;
+    padding: 20px 0;
+   
+}
+
+.task-details h3 {
+    color: var(--main-theme-color);
+    margin-bottom: 20px;
+}
+
+.content button  {
+    color: white;
+    border-color: var(--main-theme-color);
+    background-color: var(--main-theme-color);
+    border-radius: 4px;
+    height: 2em;
+    width: 8em;
+    margin-top: 10px;
+    margin-right: 3px;
+}

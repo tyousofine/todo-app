@@ -2,10 +2,9 @@ import React from 'react'
 
 export default function Header() {
     return (
-        <header>
-            <h2>Todo App</h2>
+        <header className='header'>
+            <p>Todo App</p>
             <p>By Tina Youssefian</p>
-            <h1>These are the tasks:</h1>
         </header>
     )
 }

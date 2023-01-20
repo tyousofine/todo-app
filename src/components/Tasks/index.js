@@ -8,17 +8,17 @@ export default function Tasks(props) {
         {
             id: uuid(),
             task: "Wash the dishes",
-            status: "Pending",
+            status: false,
         },
         {
             id: uuid(),
             task: "Cook dinner",
-            status: "Pending",
+            status: false,
         },
         {
             id: uuid(),
             task: "Finish JS4 lab2",
-            status: "Pending",
+            status: false,
         },
     ])
 
@@ -27,7 +27,7 @@ export default function Tasks(props) {
         const updatedStatus = [...tasks];
         updatedStatus.forEach((task) => {
             if (task.id === id) {
-                task.status = "Done"
+                task.status = !task.status
             }
             setTasks(updatedStatus);
         })
@@ -47,24 +47,35 @@ export default function Tasks(props) {
 
     // function to clear all tasks
     const handleClearTasks = () => {
-        let newTasksArray = [...tasks];
-        newTasksArray = [];
-        setTasks(newTasksArray)
+        // let newTasksArray = [...tasks];
+        // newTasksArray = [];
+        // setTasks(newTasksArray)
+        setTasks([]);
     }
 
     return (
-        <main>
-            {tasks.map((data, index) => (
+        <>
+            <div className='title-bar'>
+                <h1>These are the tasks</h1>
+                <button>Add Task</button>
+            </div>
+            {tasks.map((data, index) =>
+            (
                 <TaskDetail
                     key={index}
                     id={data.id}
                     task={data.task}
-                    status={data.status}
+                    status={data.status ? "Done" : "Pending"}
                     isComplete={handleChangeStatus}
                     toDelete={handleDelete}
                 />
             ))}
-            <button onClick={handleClearTasks}>Clear Tasks</button>
-        </main>
+            <div className="clear-btn">
+                <button
+                    onClick={handleClearTasks}>
+                    Clear Tasks
+                </button>
+            </div>
+        </>
     )
 }

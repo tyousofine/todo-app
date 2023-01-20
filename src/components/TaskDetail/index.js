@@ -13,8 +13,8 @@ export default function TaskDetail({ task, status, id, isComplete, toDelete }) {
     }
 
     return (
-        <div>
-            <div>{task}</div>
+        <div className='task-details'>
+            <h3>{task}</h3>
             <div>Id: {id}</div>
             <div>Status: {status}</div>
             <button onClick={handleCompleteStatus}>Change Status</button>
