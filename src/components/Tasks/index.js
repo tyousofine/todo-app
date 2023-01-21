@@ -34,12 +34,11 @@ export default function Tasks(props) {
         })
     }
 
-    // Delete task handler using 
+    // Delete task handler
     const handleDelete = (id) => {
-        const newTasksArray = [...tasks];
-        newTasksArray.forEach((task) => {
+        tasks.forEach((task) => {
             if (task.id === id) {
-                setTasks(newTasksArray.filter((matched) => {
+                setTasks(tasks.filter((matched) => {
                     return id !== matched.id
                 }))
             }
@@ -48,10 +47,7 @@ export default function Tasks(props) {
 
     // function to clear all tasks
     const handleClearTasks = () => {
-        // let newTasksArray = [...tasks];
-        // newTasksArray = [];
-        // setTasks(newTasksArray)
-        setTasks([]);
+        setTasks([])
     }
 
     // add new task handler (non dynamic)

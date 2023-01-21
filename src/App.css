@@ -1,5 +1,7 @@
 :root {
     --main-theme-color: #5095bf;
+    --sec-theme-color: grey;
+    --btn-text-color: white;
 }
 
 * {
@@ -18,13 +20,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--sec-theme-color);
     padding-bottom: 10px;
     margin-bottom: 30px;
 }
 
 .title-bar button {
-    color: white;
+    color: var(--btn-text-color);
     border-color: var(--main-theme-color);
     background-color: var(--main-theme-color);
     border-radius: 4px;
@@ -40,7 +42,7 @@
 
 /* task detail cards section */
 .task-details {        
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--sec-theme-color);
     padding: 20px 0;
    
 }
@@ -51,7 +53,7 @@
 }
 
 .content button  {
-    color: white;
+    color: var(--btn-text-color);
     border-color: var(--main-theme-color);
     background-color: var(--main-theme-color);
     border-radius: 4px;
