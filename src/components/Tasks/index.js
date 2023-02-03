@@ -1,64 +1,65 @@
-import React, { useState } from 'react';
-import uuid from 'react-uuid';
+import React from 'react';
 import TaskDetail from '../TaskDetail';
 
-export default function Tasks(props) {
+export default function Tasks({ task }) {
 
-    // initial array of hard coded data objects 
-    const [tasks, setTasks] = useState([
-        {
-            id: uuid(),
-            task: "Wash the dishes",
-            status: false,
-        },
-        {
-            id: uuid(),
-            task: "Cook dinner",
-            status: false,
-        },
-        {
-            id: uuid(),
-            task: "Finish JS4 lab2",
-            status: false,
-        },
-    ])
+
+    //initial array of hard coded data objects
+    // const [tasks, setTasks] = useState([
+    //     {
+    //         id: uuid(),
+    //         task: "Wash the dishes",
+    //         status: false,
+    //     },
+    //     {
+    //         id: uuid(),
+    //         task: "Cook dinner",
+    //         status: false,
+    //     },
+    //     {
+    //         id: uuid(),
+    //         task: "Finish JS4 lab2",
+    //         status: false,
+    //     },
+    // ])
 
     // Change task status handler
-    const handleChangeStatus = (id) => {
-        const updatedStatus = [...tasks];
-        updatedStatus.forEach((task) => {
-            if (task.id === id) {
-                task.status = !task.status
-            }
-            setTasks(updatedStatus);
-        })
-    }
+    // const handleChangeStatus = (id) => {
+    //     const updatedStatus = [...task];
+    //     updatedStatus.forEach((task) => {
+    //         if (task.id === id) {
+    //             task.status = !task.status
+    //         }
+    //         // setTasks(updatedStatus);
+    //     })
+    // }
 
     // Delete task handler
-    const handleDelete = (id) => {
-        tasks.forEach((task) => {
-            if (task.id === id) {
-                setTasks(tasks.filter((matched) => {
-                    return id !== matched.id
-                }))
-            }
-        })
-    }
+    // const handleDelete = (id) => {
+    //     tasks.forEach((task) => {
+    //         if (task.id === id) {
+    //             setTasks(task.filter((matched) => {
+    //                 return id !== matched.id
+    //             }))
+    //         }
+    //     })
+    // }
 
     // function to clear all tasks
-    const handleClearTasks = () => {
-        setTasks([])
-    }
+    // const handleClearTasks = () => {
+    //     setTasks([])
+    // }
 
     // add new task handler (non dynamic)
+
     const handleAddTask = () => {
-        const newTasksArray = [...tasks,
-        {
-            id: uuid(),
-            task: "new task",
-            status: false
-        }]
-        setTasks(newTasksArray);
+        // const newTasksArray = [...tasks,
+        // {
+        //     id: uuid(),
+        //     task: " new task",
+        //     status: false
+        // }]
+        // setTasks(newTasksArray);
     }
 
     return (
@@ -68,19 +69,19 @@ export default function Tasks(props) {
                 <button onClick={handleAddTask}>Add Task</button>
             </div>
 
-            {tasks.map((data, index) =>
+            {task.map((data, index) =>
             (
                 <TaskDetail
                     key={index}
                     id={data.id}
-                    task={data.task}
-                    status={data.status ? "Done" : "Pending"}
-                    isComplete={handleChangeStatus}
-                    toDelete={handleDelete}
+                    description={data.description}
+                    status={data.status === "done" ? "Done" : "Pending"}
+                // isComplete={handleChangeStatus}
+                // toDelete={handleDelete}
                 />
             ))}
 
-            <button onClick={handleClearTasks}>Clear Tasks</button>
+            {/* <button onClick={handleClearTasks}>Clear Tasks</button> */}
 
         </>
     )

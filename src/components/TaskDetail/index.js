@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TaskDetail({ task, status, id, isComplete, toDelete }) {
+export default function TaskDetail({ description, status, id, isComplete, toDelete }) {
 
     // handler for set isComplete task
     const handleCompleteStatus = () => {
@@ -12,9 +12,10 @@ export default function TaskDetail({ task, status, id, isComplete, toDelete }) {
         toDelete(id)
     }
 
+
     return (
         <div className='task-details'>
-            <h3>{task}</h3>
+            <h3>{description}</h3>
             <div>Id: {id}</div>
             <div>Status: {status}</div>
             <button onClick={handleCompleteStatus}>Change Status</button>
