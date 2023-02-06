@@ -1,7 +1,7 @@
 import React from 'react';
 import TaskDetail from '../TaskDetail';
 
-export default function Tasks({ task }) {
+export default function Tasks({ task, isComplete, toDelete, onClearAllTasks }) {
 
 
     //initial array of hard coded data objects
@@ -23,34 +23,6 @@ export default function Tasks({ task }) {
     //     },
     // ])
 
-    // Change task status handler
-    // const handleChangeStatus = (id) => {
-    //     const updatedStatus = [...task];
-    //     updatedStatus.forEach((task) => {
-    //         if (task.id === id) {
-    //             task.status = !task.status
-    //         }
-    //         // setTasks(updatedStatus);
-    //     })
-    // }
-
-    // Delete task handler
-    // const handleDelete = (id) => {
-    //     tasks.forEach((task) => {
-    //         if (task.id === id) {
-    //             setTasks(task.filter((matched) => {
-    //                 return id !== matched.id
-    //             }))
-    //         }
-    //     })
-    // }
-
-    // function to clear all tasks
-    // const handleClearTasks = () => {
-    //     setTasks([])
-    // }
-
-    // add new task handler (non dynamic)
 
     const handleAddTask = () => {
         // const newTasksArray = [...tasks,
@@ -75,13 +47,13 @@ export default function Tasks({ task }) {
                     key={index}
                     id={data.id}
                     description={data.description}
-                    status={data.status === "done" ? "Done" : "Pending"}
-                // isComplete={handleChangeStatus}
-                // toDelete={handleDelete}
+                    status={data.status ? "Done" : "Pending"}
+                    isComplete={isComplete}
+                    toDelete={toDelete}
                 />
             ))}
 
-            {/* <button onClick={handleClearTasks}>Clear Tasks</button> */}
+
 
         </>
     )
