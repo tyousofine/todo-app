@@ -6,7 +6,26 @@ import Form from './components/Form';
 import uuid from 'react-uuid';
 
 function App() {
-  const [task, setTask] = useState([]);
+
+  //initial array of hard coded data objects
+  const [task, setTask] = useState([
+    {
+      id: uuid(),
+      description: "Wash the dishes",
+      status: false,
+    },
+    {
+      id: uuid(),
+      description: "Cook dinner",
+      status: false,
+    },
+    {
+      id: uuid(),
+      description: "Finish JS4 lab2",
+      status: false,
+    },
+  ])
+
 
 
   const handleAddTask = (description, status) => {
@@ -52,17 +71,22 @@ function App() {
     <div className='content'>
       <Header />
 
-      <Tasks
-        task={task}
-        isComplete={handleChangeStatus}
-        toDelete={handleDelete} />
-      <Form
-        onAddTask={handleAddTask}
-        onClearAllTasks={handleClearTasks} />
+      <div style={{ display: 'flex' }}>
+        <div className='tasks-container'>
+          <Tasks
+            task={task}
+            isComplete={handleChangeStatus}
+            toDelete={handleDelete}
+            toClearAll={handleClearTasks} />
+        </div>
+        <div className="form-display">
+          <Form
+            onAddTask={handleAddTask}
+            onClearAllTasks={handleClearTasks} />
+        </div>
+      </div>
 
-      {task.length > 0 &&
-        <button onClick={handleClearTasks}>Clear Tasks</button>
-      }
+
     </div>
   );
 }

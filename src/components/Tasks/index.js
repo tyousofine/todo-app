@@ -1,8 +1,7 @@
 import React from 'react';
 import TaskDetail from '../TaskDetail';
 
-export default function Tasks({ task, isComplete, toDelete, onClearAllTasks }) {
-
+export default function Tasks({ task, isComplete, toDelete, toClearAll }) {
 
     //initial array of hard coded data objects
     // const [tasks, setTasks] = useState([
@@ -24,23 +23,13 @@ export default function Tasks({ task, isComplete, toDelete, onClearAllTasks }) {
     // ])
 
 
-    const handleAddTask = () => {
-        // const newTasksArray = [...tasks,
-        // {
-        //     id: uuid(),
-        //     task: " new task",
-        //     status: false
-        // }]
-        // setTasks(newTasksArray);
-    }
+
 
     return (
         <>
             <div className='title-bar'>
                 <h1>These are the tasks</h1>
-                <button onClick={handleAddTask}>Add Task</button>
             </div>
-
             {task.map((data, index) =>
             (
                 <TaskDetail
@@ -53,6 +42,9 @@ export default function Tasks({ task, isComplete, toDelete, onClearAllTasks }) {
                 />
             ))}
 
+            {task.length > 0 &&
+                <button onClick={toClearAll}>Clear Tasks</button>
+            }
 
 
         </>

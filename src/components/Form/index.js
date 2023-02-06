@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './styles.css'
 
 
 
@@ -17,37 +18,29 @@ export default function Form({ onAddTask }) {
         let validate = []
         if (description === "") {
             validate.push("Please enter a description")
-
         }
+
         setErrorMessages(validate)
 
         if (validate.length === 0) {
 
             onAddTask(description, status)
             setSuccess(true);
+
+            setDescription('');
+            setStatus(false);
+
             setTimeout(() => {
                 setSuccess(false)
             }, 2000)
         }
     }
 
-    return (
-        <>
-            <hr />
-            {errorMessages.length > 0 && (
-                <div>
-                    Invalid data:
-                    <ul>{errorMessages.map((e, index) => (
-                        <li key={index}>{e}</li>
-                    ))}
-                    </ul>
-                </div>
-            )
-            }
 
-            {success === true &&
-                <div><h3>Task Created!</h3></div>
-            }
+
+    return (
+        <div className='form-container'>
+
 
 
 
@@ -55,9 +48,11 @@ export default function Form({ onAddTask }) {
             <form onSubmit={createNewTask}>
                 <label>
                     Task:
+                    <br />
                     <input
                         type="text"
                         maxLength={150}
+                        style={{ maxWidth: '100%' }}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder='create task'
@@ -65,15 +60,33 @@ export default function Form({ onAddTask }) {
                 </label>
                 <label>
                     Status:
+                    <br />
                     <select value={status}
                         onChange={(e) => setStatus(e.target.value)}>
                         <option value={false}>Pending</option>
                         <option value={true}>Done</option>
                     </select>
                 </label>
-                <button type="submit">Create</button>
+                <br />
+                <button type="submit">Add Task</button>
+
+                {errorMessages.length > 0 && (
+                    <div>
+                        Invalid data:
+                        <ul>{errorMessages.map((e, index) => (
+                            <li key={index}>{e}</li>
+                        ))}
+                        </ul>
+                    </div>
+                )
+                }
+
+                {success === true &&
+                    <div><h2 style={{ color: 'red' }}>Task Created!</h2></div>
+                }
+
             </form>
-        </>
+        </div>
     )
 
 }
