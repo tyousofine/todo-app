@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './styles.css'
 
 export default function TaskDetail({ description, status, id, priority, isComplete, toDelete }) {
 
-    const [isRed, setIsRed] = useState(true);
-    const [isYellow, setIsYellow] = useState(true);
-    const [isGreen, setIsGreen] = useState(true);
-    // handler for set isComplete task
+    // const [isYellow, setIsYellow] = useState(true);
+
     const handleCompleteStatus = () => {
         isComplete(id)
     }
@@ -20,7 +18,6 @@ export default function TaskDetail({ description, status, id, priority, isComple
     //     setIsYellow(current => !current)
     // }
 
-
     return (
         // create individual tasks
         <div className='task-details'>
@@ -32,7 +29,7 @@ export default function TaskDetail({ description, status, id, priority, isComple
                 {/* conditionals to display colors for priority levels */}
                 <strong>Priority: </strong>
                 {/* high priority */}
-                {priority === 'High' &&
+                {priority === 'red' &&
                     <span>
                         <button className='red' />
                         <button className='pale-yellow' />
@@ -41,7 +38,7 @@ export default function TaskDetail({ description, status, id, priority, isComple
                 }
 
                 {/* medium priority */}
-                {priority === 'Med' &&
+                {priority === 'yellow' &&
                     <span>
                         <button className='pale-red' />
                         <button className='yellow' />
@@ -49,7 +46,7 @@ export default function TaskDetail({ description, status, id, priority, isComple
                     </span>
                 }
                 {/* low priority */}
-                {priority === 'Low' &&
+                {priority === 'green' &&
                     <span>
                         <button className='pale-red' />
                         <button className='pale-yellow' />

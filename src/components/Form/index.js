@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './styles.css'
-
 
 
 export default function Form({ onAddTask }) {
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState(false);
-
     const [priority, setPriority] = useState('');
     const [errorMessages, setErrorMessages] = useState('');
     const [success, setSuccess] = useState(false);
 
+    const inputFocus = useRef();
+
     // key/values for task priorities
     const priorities = [
-        { id: 'High', text: 'High' },
-        { id: 'Med', text: 'Med' },
-        { id: 'Low', text: 'Low' },
+        { id: 'red', text: 'High' },
+        { id: 'yellow', text: 'Med' },
+        { id: 'green', text: 'Low' },
     ]
 
     // crate New task
@@ -42,7 +42,7 @@ export default function Form({ onAddTask }) {
             setDescription('');
             setStatus(false);
             setPriority('')
-
+            inputFocus.current.focus();
 
             // time for successful task creation
             setTimeout(() => {
@@ -55,7 +55,7 @@ export default function Form({ onAddTask }) {
         <div className='form-container'>
             {/* create task form */}
             <form onSubmit={createNewTask}>
-                <h2>Create New Task:</h2>
+                <h2>Create New Task</h2>
 
                 {/* task description */}
                 <label>
@@ -68,6 +68,7 @@ export default function Form({ onAddTask }) {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder='create task'
+                        ref={inputFocus}
                     />
                 </label>
 

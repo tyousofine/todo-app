@@ -13,19 +13,19 @@ function App() {
       id: uuid(),
       description: "Wash the dishes",
       status: false,
-      priority: 'Low'
+      priority: 'green'
     },
     {
       id: uuid(),
       description: "Cook dinner",
       status: false,
-      priority: 'Med'
+      priority: 'yellow'
     },
     {
       id: uuid(),
       description: "Finish JS4 lab2",
       status: false,
-      priority: 'High'
+      priority: 'red'
     },
   ])
 
