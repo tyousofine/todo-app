@@ -39,19 +39,10 @@
 
 }
 
- .form-display {
-    box-shadow: 3px 3px 3px lightgray, -3px 0 .4em lightgray;
-   border-radius: 1%;
-   padding: 3%;
-   width: 35%;
-   height: 60vh
-}
-
 /* task detail cards section */
 .task-details {        
     border-bottom: 1px solid var(--sec-theme-color);
     padding: 20px 0;
-   
 }
 
 .task-details h3 {
@@ -69,4 +60,5 @@
     margin-top: 10px;
     margin-right: 3px;
 }
+
 

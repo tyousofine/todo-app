@@ -7,41 +7,35 @@ import uuid from 'react-uuid';
 
 function App() {
 
-  //initial array of hard coded data objects
+  //initial array of hard coded data objects - test data
   const [task, setTask] = useState([
     {
       id: uuid(),
       description: "Wash the dishes",
       status: false,
-      dueDate: '02/18/2023',
       priority: 'Low'
     },
     {
       id: uuid(),
       description: "Cook dinner",
       status: false,
-      dueDate: '02/19/2023',
       priority: 'Med'
     },
     {
       id: uuid(),
       description: "Finish JS4 lab2",
       status: false,
-      dueDate: '02/20/2023',
       priority: 'High'
     },
   ])
-  console.log(task)
 
-
-
-  const handleAddTask = (description, status, dueDate, priority) => {
+  // add task handler
+  const handleAddTask = (description, status, priority) => {
     const newTaskArray = [...task,
     {
       id: uuid(),
       description,
       status,
-      dueDate,
       priority
     }]
     setTask(newTaskArray)
@@ -69,7 +63,7 @@ function App() {
     })
   }
 
-  // function to clear all tasks
+  // clear all tasks hanlder
   const handleClearTasks = () => {
     setTask([])
     console.log(task)
@@ -78,7 +72,6 @@ function App() {
   return (
     <div className='content'>
       <Header />
-
       <div style={{ display: 'flex' }}>
         <div className='tasks-container'>
           <Tasks
@@ -90,12 +83,9 @@ function App() {
         <div>
           <Form
             onAddTask={handleAddTask}
-
           />
         </div>
       </div>
-
-
     </div>
   );
 }

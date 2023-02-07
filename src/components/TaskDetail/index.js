@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './styles.css'
 
-export default function TaskDetail({ description, status, id, dueDate, priority, isComplete, toDelete }) {
+export default function TaskDetail({ description, status, id, priority, isComplete, toDelete }) {
 
+    const [isRed, setIsRed] = useState(true);
+    const [isYellow, setIsYellow] = useState(true);
+    const [isGreen, setIsGreen] = useState(true);
     // handler for set isComplete task
     const handleCompleteStatus = () => {
         isComplete(id)
@@ -12,6 +16,11 @@ export default function TaskDetail({ description, status, id, dueDate, priority,
         toDelete(id)
     }
 
+    // const handleClassYellow = (e) => {
+    //     setIsYellow(current => !current)
+    // }
+
+
     return (
         // create individual tasks
         <div className='task-details'>
@@ -19,33 +28,40 @@ export default function TaskDetail({ description, status, id, dueDate, priority,
             <div><strong>Id: </strong>{id}</div>
             <div><strong>Status: </strong>{status}</div>
 
-            {/* conditional to omit displaying duedate if no input received  */}
-            {dueDate !== '' &&
-                <div><strong>Due Date: </strong>{dueDate}</div>
-            }
             <div>
                 {/* conditionals to display colors for priority levels */}
                 <strong>Priority: </strong>
+                {/* high priority */}
                 {priority === 'High' &&
                     <span>
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: 'red', border: 'none' }} />
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: '#ffffbf', border: 'none' }} />
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: '#ECFFDC', border: 'none' }} />
+                        <button className='red' />
+                        <button className='pale-yellow' />
+                        <button className='pale-green' />
                     </span>
                 }
-                {
-                    priority === 'Med' &&
+
+                {/* medium priority */}
+                {priority === 'Med' &&
                     <span>
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: '#ffcccb', border: 'none' }} />
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: 'yellow', border: 'none' }} />
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: '#ECFFDC', border: 'none' }} />
+                        <button className='pale-red' />
+                        <button className='yellow' />
+                        <button className='pale-green' />
                     </span>
                 }
-                {(priority === 'Low' || priority === '') &&
+                {/* low priority */}
+                {priority === 'Low' &&
                     <span>
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: '#ffcccb', border: 'none' }} />
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: '#ffffbf', border: 'none' }} />
-                        <button style={{ borderRadius: '50%', width: 10, height: 12, backgroundColor: 'green', border: 'none' }} />
+                        <button className='pale-red' />
+                        <button className='pale-yellow' />
+                        <button className='green' />
+                    </span>
+                }
+                {/* no priority designation when none has been picked */}
+                {priority === '' &&
+                    <span>
+                        <button className='pale-red' />
+                        <button className='pale-yellow' />
+                        <button className='pale-green' />
                     </span>
                 }
             </div>

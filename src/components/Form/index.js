@@ -6,7 +6,7 @@ import './styles.css'
 export default function Form({ onAddTask }) {
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState(false);
-    const [dueDate, setDueDate] = useState('');
+
     const [priority, setPriority] = useState('');
     const [errorMessages, setErrorMessages] = useState('');
     const [success, setSuccess] = useState(false);
@@ -35,14 +35,14 @@ export default function Form({ onAddTask }) {
         if (validate.length === 0) {
 
             // pass props
-            onAddTask(description, status, dueDate, priority)
+            onAddTask(description, status, priority)
             setSuccess(true);
             // clear inputs
 
             setDescription('');
             setStatus(false);
             setPriority('')
-            setDueDate('mm/dd/yyyy')
+
 
             // time for successful task creation
             setTimeout(() => {
@@ -80,17 +80,6 @@ export default function Form({ onAddTask }) {
                         <option value={false}>Pending</option>
                         <option value={true}>Done</option>
                     </select>
-                </label>
-                <br />
-
-                {/* due date */}
-                <label>
-                    <strong>Due Date:</strong>
-                    <br />
-                    <input
-                        type="date"
-                        value={dueDate}
-                        onChange={(e) => setDueDate(e.target.value)} />
                 </label>
                 <br />
 
