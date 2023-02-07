@@ -1,29 +1,8 @@
 import React from 'react';
 import TaskDetail from '../TaskDetail';
+import { StyleSheet } from 'react'
 
 export default function Tasks({ task, isComplete, toDelete, toClearAll }) {
-
-    //initial array of hard coded data objects
-    // const [tasks, setTasks] = useState([
-    //     {
-    //         id: uuid(),
-    //         task: "Wash the dishes",
-    //         status: false,
-    //     },
-    //     {
-    //         id: uuid(),
-    //         task: "Cook dinner",
-    //         status: false,
-    //     },
-    //     {
-    //         id: uuid(),
-    //         task: "Finish JS4 lab2",
-    //         status: false,
-    //     },
-    // ])
-
-
-
 
     return (
         <>
@@ -37,6 +16,8 @@ export default function Tasks({ task, isComplete, toDelete, toClearAll }) {
                     id={data.id}
                     description={data.description}
                     status={data.status ? "Done" : "Pending"}
+                    dueDate={data.dueDate}
+                    priority={data.priority}
                     isComplete={isComplete}
                     toDelete={toDelete}
                 />
@@ -45,8 +26,7 @@ export default function Tasks({ task, isComplete, toDelete, toClearAll }) {
             {task.length > 0 &&
                 <button onClick={toClearAll}>Clear Tasks</button>
             }
-
-
         </>
     )
 }
+

@@ -13,27 +13,36 @@ function App() {
       id: uuid(),
       description: "Wash the dishes",
       status: false,
+      dueDate: '02/18/2023',
+      priority: 'Low'
     },
     {
       id: uuid(),
       description: "Cook dinner",
       status: false,
+      dueDate: '02/19/2023',
+      priority: 'Med'
     },
     {
       id: uuid(),
       description: "Finish JS4 lab2",
       status: false,
+      dueDate: '02/20/2023',
+      priority: 'High'
     },
   ])
+  console.log(task)
 
 
 
-  const handleAddTask = (description, status) => {
+  const handleAddTask = (description, status, dueDate, priority) => {
     const newTaskArray = [...task,
     {
       id: uuid(),
       description,
-      status
+      status,
+      dueDate,
+      priority
     }]
     setTask(newTaskArray)
   }
@@ -66,7 +75,6 @@ function App() {
     console.log(task)
   }
 
-
   return (
     <div className='content'>
       <Header />
@@ -79,10 +87,11 @@ function App() {
             toDelete={handleDelete}
             toClearAll={handleClearTasks} />
         </div>
-        <div className="form-display">
+        <div>
           <Form
             onAddTask={handleAddTask}
-            onClearAllTasks={handleClearTasks} />
+
+          />
         </div>
       </div>
 

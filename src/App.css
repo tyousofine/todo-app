@@ -15,7 +15,7 @@
     color: var(--main-theme-color);        
 }
 
-
+/* main container */
 .content {
     max-width: 800px;
     margin: 40px auto;
@@ -34,7 +34,7 @@
     /* border: 1px solid black; */
     padding: 2%;
     margin-right: 1%;
-    width: 60%;
+    width: 55%;
     box-shadow: 3px 3px 3px lightgray, -3px 0 .4em lightgray;
 
 }
@@ -43,8 +43,8 @@
     box-shadow: 3px 3px 3px lightgray, -3px 0 .4em lightgray;
    border-radius: 1%;
    padding: 3%;
-   width: 30%;
-   height: 50vh
+   width: 35%;
+   height: 60vh
 }
 
 /* task detail cards section */
@@ -69,3 +69,4 @@
     margin-top: 10px;
     margin-right: 3px;
 }
+
