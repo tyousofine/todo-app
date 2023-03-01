@@ -1,0 +1,59 @@
+@import "./../../styles/variables.scss";
+
+.header {
+  max-width: 1200px;
+  background-color: $primary-color;
+  color: $ondark-text-color;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  .btn-container {
+    margin: auto 2%;
+
+    button {
+      border: 2px solid white;
+      color: white;
+      background-color: transparent;
+      border-radius: 4px;
+      height: 2rem;
+      width: 10rem;
+      white-space: nowrap;
+
+      @include breakpoint-small {
+        font-size: -1em;
+        width: 8rem;
+      }
+    }
+  }
+
+  .left-container {
+    // margin: auto 2%;
+    // h1,
+    // svg {
+    //   display: inline-block;
+    // }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2%;
+
+    svg {
+      font-size: 1.8em;
+      margin-right: 1rem;
+    }
+
+    @include breakpoint-small {
+      h1 {
+        font-size: 1.5em;
+        white-space: nowrap;
+      }
+
+      svg {
+        font-size: 1em;
+        margin-right: 0.8rem;
+      }
+    }
+  }
+}

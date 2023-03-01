@@ -1,69 +1,70 @@
-import React from 'react'
-import './styles.css'
+import React, { useState } from 'react'
+import './styles.scss'
+
+import { MdTimer } from "react-icons/md";
+import { MdOutlineCheckCircleOutline } from "react-icons/md";
+import { RiDeleteBinLine } from "react-icons/ri";
+
 
 export default function TaskDetail({ description, status, id, priority, isComplete, toDelete }) {
 
-    // const [isYellow, setIsYellow] = useState(true);
+    const [selected, setSelected] = useState(priority);
 
     const handleCompleteStatus = () => {
-        isComplete(id)
+        isComplete(id);
     }
 
     // handler for delete task
     const handleDelete = () => {
-        toDelete(id)
+        toDelete(id);
     }
-
-    // const handleClassYellow = (e) => {
-    //     setIsYellow(current => !current)
-    // }
 
     return (
         // create individual tasks
         <div className='task-details'>
             <h3>{description}</h3>
-            <div><strong>Id: </strong>{id}</div>
+            <div className='id'><strong>Id: </strong>{id}</div>
             <div><strong>Status: </strong>{status}</div>
 
             <div>
-                {/* conditionals to display colors for priority levels */}
                 <strong>Priority: </strong>
-                {/* high priority */}
-                {priority === 'red' &&
-                    <span>
-                        <button className='red' />
-                        <button className='pale-yellow' />
-                        <button className='pale-green' />
-                    </span>
-                }
 
-                {/* medium priority */}
-                {priority === 'yellow' &&
-                    <span>
-                        <button className='pale-red' />
-                        <button className='yellow' />
-                        <button className='pale-green' />
-                    </span>
-                }
-                {/* low priority */}
-                {priority === 'green' &&
-                    <span>
-                        <button className='pale-red' />
-                        <button className='pale-yellow' />
-                        <button className='green' />
-                    </span>
-                }
-                {/* no priority designation when none has been picked */}
-                {priority === '' &&
-                    <span>
-                        <button className='pale-red' />
-                        <button className='pale-yellow' />
-                        <button className='pale-green' />
-                    </span>
-                }
+                {/* conditionals to display colors for priority levels */}
+
+                {/* high priority + toggle option for priority color change*/}
+                <span>
+                    <button
+                        className={'red' + (selected !== 'red' ? ' pale-red' : '')}
+                        onClick={() => setSelected('red')}
+                    />
+                    <button className={'yellow' + (selected !== 'yellow' ? ' pale-yellow' : '')}
+                        onClick={() => setSelected('yellow')}
+                    />
+                    <button className={'green' + (selected !== 'green' ? ' pale-green' : '')}
+                        onClick={() => setSelected('green')}
+                    />
+                </span>
             </div>
-            <button onClick={handleCompleteStatus}>Change Status</button>
-            <button onClick={handleDelete}>Delete Task</button>
+            {/* conditionals to display pending / complete buttons + icons  */}
+            {
+                status === 'Pending' &&
+                <button className='status'
+                    onClick={handleCompleteStatus}>
+                    <MdTimer />
+                    Status
+                </button>
+            }
+            {
+                status === 'Done' &&
+                <button className='status'
+                    onClick={handleCompleteStatus}>
+                    <MdOutlineCheckCircleOutline />
+                    Status
+                </button>
+            }
+
+            {/* delete button */}
+            <button className='delete' onClick={handleDelete}><RiDeleteBinLine />Delete Task</button>
         </div >
     )
 }

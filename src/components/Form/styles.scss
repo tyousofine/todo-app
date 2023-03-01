@@ -1,0 +1,27 @@
+@import "./../../styles/variables.scss";
+
+.form-container {
+  margin: 0;
+  button {
+    @include button-style($primary-color) {
+    }
+  }
+
+  .title-bar {
+    border-bottom: 1px solid grey;
+    padding-bottom: 5%;
+    margin-bottom: 1.5rem;
+  }
+
+  strong {
+    color: $primary-color;
+    display: block;
+    margin: 2% 0;
+  }
+
+  input[type="text"],
+  select {
+    width: 90%;
+    height: 25px;
+  }
+}

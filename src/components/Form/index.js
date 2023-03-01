@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import './styles.css'
+import './styles.scss'
 
 
 export default function Form({ onAddTask }) {
@@ -54,13 +54,15 @@ export default function Form({ onAddTask }) {
     return (
         <div className='form-container'>
             {/* create task form */}
-            <form onSubmit={createNewTask}>
+            <div className='title-bar'>
                 <h2>Create New Task</h2>
+            </div>
+            <form onSubmit={createNewTask}>
 
                 {/* task description */}
                 <label>
                     <strong>Task:</strong>
-                    <br />
+
                     <input
                         type="text"
                         maxLength={150}
@@ -75,18 +77,18 @@ export default function Form({ onAddTask }) {
                 {/* task status */}
                 <label>
                     <strong>Status:</strong>
-                    <br />
+
                     <select value={status}
                         onChange={(e) => setStatus(e.target.value)}>
                         <option value={false}>Pending</option>
                         <option value={true}>Done</option>
                     </select>
                 </label>
-                <br />
+
 
                 {/* priority  */}
                 <strong>Priority:</strong>
-                <br />
+
                 {priorities.map((item) => (
                     <label key={item.id}>
                         <input
@@ -97,10 +99,11 @@ export default function Form({ onAddTask }) {
                             onChange={(e) => setPriority(e.target.value)}
                         />
                         {item.text}
-                        <br />
+
                     </label>
+
                 ))}
-                <br />
+                <br></br>
 
                 {/* submit  */}
                 <button type="submit">Add Task</button>

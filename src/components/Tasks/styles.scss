@@ -1,0 +1,13 @@
+@import "./../../styles/variables.scss";
+
+// tasks styles - left side of home page
+.tasks-container {
+  button {
+    @include button-style($primary-color);
+  }
+
+  .title-bar {
+    border-bottom: 1px solid grey;
+    padding-bottom: 5%;
+  }
+}

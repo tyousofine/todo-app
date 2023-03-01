@@ -1,8 +1,9 @@
-import './App.css'
+import './App.scss'
 import { useState } from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import Form from './components/Form';
+import Footer from './components/Footer'
 import uuid from 'react-uuid';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
 
   // add task handler
   const handleAddTask = (description, status, priority) => {
+    console.log(priority)
     const newTaskArray = [...task,
     {
       id: uuid(),
@@ -70,22 +72,23 @@ function App() {
   }
 
   return (
-    <div className='content'>
+    <div className='app'>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <div className='tasks-container'>
+      <div className='main-page-container'>
+        <div className='tasks-section'>
           <Tasks
             task={task}
             isComplete={handleChangeStatus}
             toDelete={handleDelete}
             toClearAll={handleClearTasks} />
         </div>
-        <div>
+        <div className='form-section'>
           <Form
             onAddTask={handleAddTask}
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
