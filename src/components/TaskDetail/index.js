@@ -48,7 +48,7 @@ export default function TaskDetail({ description, status, id, priority, isComple
             {/* conditionals to display pending / complete buttons + icons  */}
             {
                 status === 'Pending' &&
-                <button className='status'
+                <button className='status-btn'
                     onClick={handleCompleteStatus}>
                     <MdTimer />
                     Status
@@ -56,7 +56,7 @@ export default function TaskDetail({ description, status, id, priority, isComple
             }
             {
                 status === 'Done' &&
-                <button className='status'
+                <button className='status-btn'
                     onClick={handleCompleteStatus}>
                     <MdOutlineCheckCircleOutline />
                     Status
@@ -64,7 +64,7 @@ export default function TaskDetail({ description, status, id, priority, isComple
             }
 
             {/* delete button */}
-            <button className='delete' onClick={handleDelete}><RiDeleteBinLine />Delete Task</button>
+            <button className='delete-btn' onClick={handleDelete}><RiDeleteBinLine />Delete</button>
         </div >
     )
 }
