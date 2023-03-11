@@ -16,11 +16,13 @@
   margin-top: 3%;
   gap: 3%;
 
+  // left / top side styling - tasks
   .tasks-section {
     @include main-containers {
     }
   }
 
+  // right / button side styling - new task form
   .form-section {
     @include main-containers {
       height: 50%;

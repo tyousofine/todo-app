@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './styles.scss'
 
+// icon imports
 import { MdTimer } from "react-icons/md";
 import { MdOutlineCheckCircleOutline } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
