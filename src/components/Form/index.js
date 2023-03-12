@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
 import './styles.scss'
+import { useDispatch } from 'react-redux';
+import { addTask } from '../../redux/tasksSlice';
+import uuid from 'react-uuid';
 
 
-export default function Form({ onAddTask }) {
+export default function Form() {
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState(false);
     const [priority, setPriority] = useState('');
@@ -10,6 +13,8 @@ export default function Form({ onAddTask }) {
     const [success, setSuccess] = useState(false);
 
     const inputFocus = useRef();
+
+    const dispatch = useDispatch();
 
     // key/values for task priorities
     const priorities = [
@@ -34,8 +39,11 @@ export default function Form({ onAddTask }) {
         // validated - proceed
         if (validate.length === 0) {
 
+            // object to pass to store:
+            const data = { id: uuid(), description, status, priority }
+
             // pass props
-            onAddTask(description, status, priority)
+            dispatch(addTask(data))
             setSuccess(true);
             // clear inputs
 

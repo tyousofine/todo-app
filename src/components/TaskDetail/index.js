@@ -4,19 +4,22 @@ import './styles.scss'
 import { MdTimer } from "react-icons/md";
 import { MdOutlineCheckCircleOutline } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useDispatch } from 'react-redux';
+import { isComplete, deleteTask } from '../../redux/tasksSlice';
 
 
-export default function TaskDetail({ description, status, id, priority, isComplete, toDelete }) {
-
+export default function TaskDetail({ description, status, id, priority }) {
+    const dispatch = useDispatch();
     const [selected, setSelected] = useState(priority);
 
     const handleCompleteStatus = () => {
-        isComplete(id);
+        dispatch(isComplete(id))
     }
 
     // handler for delete task
     const handleDelete = () => {
-        toDelete(id);
+        // toDelete(id);
+        dispatch(deleteTask(id));
     }
 
     return (
