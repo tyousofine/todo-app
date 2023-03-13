@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+.page-not-found {
+  display: grid;
+  place-items: center;
+  margin-top: 8rem;
+
+  .oops {
+    font-family: "acme", sans-serif;
+    letter-spacing: 0.04em;
+    color: #3e3e3e;
+    text-align: center;
+    font-size: 6em;
+  }
+
+  .page-not-fount-redirect {
+    color: #3e3e3e;
+    font-size: 1.6em;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  img {
+    width: 70%;
+  }
+}
