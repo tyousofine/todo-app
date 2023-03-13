@@ -1,14 +1,11 @@
 @import "./../../styles/variables.scss";
 
 footer {
-  background-color: $primary-color-light;
-  margin-top: 4rem;
+  background-color: $primary-color;
+  margin-top: auto;
   height: 2.5rem;
   color: $ondark-text-color;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  p {
-  }
 }

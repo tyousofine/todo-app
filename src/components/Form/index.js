@@ -1,8 +1,14 @@
 import React, { useState, useRef } from 'react';
+import uuid from 'react-uuid';
+import { useNavigate } from 'react-router-dom';
+import TasksPage from '../../pages/TasksPage'
+import { useDispatch } from 'react-redux';
+import { addTask } from '../../redux/tasksSlice';
+
 import './styles.scss'
 
 
-export default function Form({ onAddTask }) {
+export default function Form() {
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState(false);
     const [priority, setPriority] = useState('');
@@ -10,6 +16,9 @@ export default function Form({ onAddTask }) {
     const [success, setSuccess] = useState(false);
 
     const inputFocus = useRef();
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     // key/values for task priorities
     const priorities = [
@@ -34,14 +43,18 @@ export default function Form({ onAddTask }) {
         // validated - proceed
         if (validate.length === 0) {
 
-            // pass props
-            onAddTask(description, status, priority)
-            setSuccess(true);
-            // clear inputs
+            // object to pass to store:
+            const data = { id: uuid(), description, status, priority }
 
+            // pass props
+            dispatch(addTask(data))
+            setSuccess(true);
+
+            // clear inputs
             setDescription('');
             setStatus(false);
             setPriority('')
+
             inputFocus.current.focus();
 
             // time for successful task creation
@@ -50,6 +63,13 @@ export default function Form({ onAddTask }) {
             }, 2500)
         }
     }
+
+    // function for navigate back button
+    const navigateBack = () => {
+        navigate('/')
+
+    }
+
 
     return (
         <div className='form-container'>
@@ -107,6 +127,7 @@ export default function Form({ onAddTask }) {
 
                 {/* submit  */}
                 <button type="submit">Add Task</button>
+                <button type='button' onClick={() => navigateBack()}>Go Back</button>
 
                 {/* invalid input error message conditional */}
                 {
