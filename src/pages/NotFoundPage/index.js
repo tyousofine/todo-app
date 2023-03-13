@@ -12,8 +12,7 @@ export default function NotFoundPage() {
             <img src={book} alt="book with missing page" />
 
             <div className='oops'>Page not found!</div>
-            {/* <div className='page-not-fount-redirect'>click          <Link to='/' element={<TasksPage />}>here </Link> to go back to home page
-            </div> */}
+
             <div className='page-not-found-redirect'><Link to='/' element={<TasksPage />}><IoArrowBack /><p>Back</p></Link></div>
 
 
