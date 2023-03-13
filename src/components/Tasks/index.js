@@ -1,17 +1,18 @@
 import React from 'react';
 import TaskDetail from '../TaskDetail';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearTasks } from '../../redux/tasksSlice';
 
 import './styles.scss'
 
 export default function Tasks() {
 
     const task = useSelector((state) => state.tasks.tasks);
+    const dispatch = useDispatch();
 
     // clear all tasks hanlder
     const handleClearTasks = () => {
-        // setTask([])
-        // console.log(task)
+        dispatch(clearTasks())
     }
     // TODO: replace later
 
@@ -19,19 +20,22 @@ export default function Tasks() {
         <div>
             <div className="tasks-container">
                 <div className='title-bar'>
-                    <h2>These are the tasks</h2>
-                </div>
-                {task.map((data, index) =>
-                (
-                    <TaskDetail
-                        key={index}
-                        id={data.id}
-                        description={data.description}
-                        status={data.status ? "Done" : "Pending"}
-                        priority={data.priority}
+                    <h2>Your Tasks</h2>
 
-                    />
-                ))}
+
+                </div>
+                <div className='task-list'>
+                    {task.map((data, index) =>
+                    (
+                        <TaskDetail
+                            key={index}
+                            id={data.id}
+                            description={data.description}
+                            status={data.status ? "Done" : "Pending"}
+                            priority={data.priority}
+                        />
+                    ))}
+                </div>
                 {/* celar button set to only be visible when tasks on screen */}
                 {task.length > 0 &&
                     <button onClick={handleClearTasks}>Clear Tasks</button>

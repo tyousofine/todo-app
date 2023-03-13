@@ -7,6 +7,7 @@ $ondark-text-color: #fefefe;
 $background-color: #fefefe;
 $success-color: #0dc729;
 $danger-color: #cd2424;
+$headers-font: "acme";
 
 // style for a set of buttons mixin
 @mixin button-style($color) {
@@ -28,26 +29,15 @@ $danger-color: #cd2424;
   @content;
 }
 
-// main page containers style mixin
-@mixin main-containers {
-  border-radius: 1%;
-  flex: 1;
-  padding: 3%;
-  margin: 0 1%;
-  box-shadow: 5px 3px 10px lightgray, -3px 0 0.4em lightgray;
-
-  @content;
-}
-
 // responsive mixin
-@mixin breakpoint($max-width) {
-  @media only screen and (max-width: $max-width) {
+@mixin breakpoint($min-width) {
+  @media only screen and (min-width: $min-width) {
     @content;
   }
 }
 
 @mixin breakpoint-small {
-  @include breakpoint(600px) {
+  @include breakpoint(700px) {
     @content;
   }
 }

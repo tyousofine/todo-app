@@ -1,58 +1,62 @@
 @import "./../../styles/variables.scss";
 
 .header {
-  max-width: 1200px;
+  min-width: 100%;
   background-color: $primary-color;
   color: $ondark-text-color;
   height: 10vh;
   display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 
-  .btn-container {
-    margin: auto 2%;
+  a {
+    text-decoration: none;
+    color: white;
+  }
 
-    button {
-      border: 2px solid white;
-      color: white;
-      background-color: transparent;
-      border-radius: 4px;
-      height: 2rem;
-      width: 10rem;
-      white-space: nowrap;
+  .app-title {
+    display: flex;
+    align-items: center;
 
-      @include breakpoint-small {
-        font-size: -1em;
-        width: 8rem;
-      }
+    flex: 50%;
+    white-space: nowrap;
+
+    svg {
+      font-size: 2.5em;
+      margin-right: 2.3rem;
+    }
+
+    h1 {
+      font-family: $headers-font;
+      letter-spacing: 0.1rem;
     }
   }
 
-  .left-container {
-    // margin: auto 2%;
-    // h1,
-    // svg {
-    //   display: inline-block;
-    // }
+  .navbar {
+    flex: 50%;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: center;
-    margin-left: 2%;
+    gap: 10%;
+    align-items: center;
+    margin-right: 3%;
 
-    svg {
-      font-size: 1.8em;
-      margin-right: 1rem;
+    a {
+      color: $ondark-text-color;
+      font-size: 1.2em;
+      text-decoration: none;
+
+      // border: 1px solid red;
+
+      &:hover {
+        font-weight: bold;
+      }
     }
 
     @include breakpoint-small {
-      h1 {
-        font-size: 1.5em;
-        white-space: nowrap;
-      }
-
-      svg {
-        font-size: 1em;
-        margin-right: 0.8rem;
+      a {
+        font-size: 1.8em;
+        font-weight: 700;
       }
     }
   }

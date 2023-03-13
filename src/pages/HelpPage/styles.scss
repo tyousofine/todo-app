@@ -1,0 +1,80 @@
+@import "../../styles/variables.scss";
+
+.help-container {
+  margin: 2% 3%;
+  box-shadow: 0.5px 0.5px 20px lightgray, -0.1em 0 0.4em lightgray;
+  padding: 3%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+
+  ul li {
+    list-style: none;
+  }
+  article {
+    flex: 70%;
+
+    h2 {
+      border-bottom: 1px solid grey;
+      padding-bottom: 5%;
+    }
+
+    h4 {
+      color: $primary-color;
+      display: block;
+      margin: 2% 0;
+      font-size: 1.4em;
+    }
+  }
+
+  aside {
+    flex: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+
+    gap: 2%;
+
+    a {
+      text-decoration: none;
+      border: 3px solid $primary-color;
+      padding: 2%;
+      color: $primary-color;
+      text-align: center;
+      border-radius: 4px;
+      width: 90%;
+      padding-bottom: 3%;
+
+      min-width: 90%;
+
+      &.active {
+        color: $ondark-text-color;
+        background-color: $primary-color;
+      }
+    }
+  }
+  .red {
+    width: 10px;
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
+    border: 0;
+  }
+
+  .yellow {
+    border-radius: 50%;
+    width: 10px;
+    height: 12px;
+    background-color: orange;
+    border: 0;
+  }
+
+  .green {
+    border-radius: 50%;
+    width: 10px;
+    height: 12px;
+    background-color: green;
+    border: 0;
+  }
+}

@@ -1,8 +1,11 @@
 import React, { useState, useRef } from 'react';
-import './styles.scss'
+import uuid from 'react-uuid';
+import { useNavigate } from 'react-router-dom';
+import TasksPage from '../../pages/TasksPage'
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../redux/tasksSlice';
-import uuid from 'react-uuid';
+
+import './styles.scss'
 
 
 export default function Form() {
@@ -13,6 +16,7 @@ export default function Form() {
     const [success, setSuccess] = useState(false);
 
     const inputFocus = useRef();
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -45,11 +49,12 @@ export default function Form() {
             // pass props
             dispatch(addTask(data))
             setSuccess(true);
-            // clear inputs
 
+            // clear inputs
             setDescription('');
             setStatus(false);
             setPriority('')
+
             inputFocus.current.focus();
 
             // time for successful task creation
@@ -58,6 +63,13 @@ export default function Form() {
             }, 2500)
         }
     }
+
+    // function for navigate back button
+    const navigateBack = () => {
+        navigate('/')
+
+    }
+
 
     return (
         <div className='form-container'>
@@ -115,6 +127,7 @@ export default function Form() {
 
                 {/* submit  */}
                 <button type="submit">Add Task</button>
+                <button type='button' onClick={() => navigateBack()}>Go Back</button>
 
                 {/* invalid input error message conditional */}
                 {

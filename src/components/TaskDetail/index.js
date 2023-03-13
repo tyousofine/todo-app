@@ -25,8 +25,10 @@ export default function TaskDetail({ description, status, id, priority }) {
     return (
         // create individual tasks
         <div className='task-details'>
-            <h3>{description}</h3>
-            <div className='id'><strong>Id: </strong>{id}</div>
+            <div>
+                <h3>{description}</h3>
+                <div className='id'><strong>Id: </strong>{id}</div>
+            </div>
             <div><strong>Status: </strong>{status}</div>
 
             <div>
