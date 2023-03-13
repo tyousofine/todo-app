@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import uuid from 'react-uuid';
 import { useNavigate } from 'react-router-dom';
-import TasksPage from '../../pages/TasksPage'
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../redux/tasksSlice';
 
