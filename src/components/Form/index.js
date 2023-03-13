@@ -126,7 +126,7 @@ export default function Form() {
 
                 {/* submit  */}
                 <button type="submit">Add Task</button>
-                <button type='button' onClick={() => navigateBack()}>Go Back</button>
+                <button type='button' onClick={() => navigateBack()}>Done Adding</button>
 
                 {/* invalid input error message conditional */}
                 {

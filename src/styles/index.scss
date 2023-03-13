@@ -24,5 +24,9 @@ h2 {
   font-family: "acme", sans-serif;
   color: #5c5c5c;
   font-size: 2em;
-  margin-top: 5%;
+  margin-top: 3%;
+
+  @include breakpoint-small {
+    font-size: 3em;
+  }
 }

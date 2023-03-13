@@ -1,5 +1,6 @@
 @import "./../../styles/variables.scss";
 
+// header left section style
 .header {
   min-width: 100%;
   background-color: $primary-color;
@@ -8,11 +9,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1%;
 
   a {
     text-decoration: none;
     color: white;
-    margin-left: 2%;
   }
 
   .app-title {
@@ -33,30 +34,32 @@
     }
   }
 
+  // header right section, navbar style
   .navbar {
     flex: 50%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10%;
-    align-items: center;
+    gap: 5%;
     margin-right: 3%;
 
     a {
+      font-family: $headers-font;
+      letter-spacing: 0.1em;
       color: $ondark-text-color;
-      font-size: 1.2em;
       text-decoration: none;
+      padding: 1%;
 
       // border: 1px solid red;
-
       &:hover {
-        font-weight: bold;
+        border: 1px solid white;
+        border-radius: 8px;
       }
     }
 
     @include breakpoint-small {
       a {
-        font-size: 1.8em;
+        font-size: 2em;
         font-weight: 700;
       }
     }

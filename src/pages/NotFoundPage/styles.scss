@@ -4,23 +4,40 @@
   display: grid;
   place-items: center;
   margin-top: 8rem;
+  margin-left: 5%;
+  margin-right: 5%;
 
   .oops {
     font-family: "acme", sans-serif;
     letter-spacing: 0.04em;
     color: #3e3e3e;
     text-align: center;
-    font-size: 6em;
+    font-size: 3em;
+
+    @include breakpoint-small {
+      font-size: 5em;
+      white-space: nowrap;
+    }
   }
 
-  .page-not-fount-redirect {
+  .page-not-found-redirect {
     color: #3e3e3e;
-    font-size: 1.6em;
+    font-size: 4em;
     text-align: center;
     margin-top: 2rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: $primary-color;
+      font-family: $headers-font;
+    }
   }
 
   img {
-    width: 70%;
+    width: 600px;
+    max-width: 60%;
   }
 }
