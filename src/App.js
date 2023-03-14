@@ -13,7 +13,6 @@ import HowToDeleteTaskPage from './pages/HelpPage/HowToDelete';
 import PriorityGuidePage from './pages/HelpPage/PriorityGuide';
 
 
-
 function App() {
 
   return (
@@ -22,6 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element={<TasksPage />}></Route>
         <Route path='/add' element={<AddTaskPage />}></Route>
+
         <Route path='/help' element={<HelpPage />}>
           <Route path='HowToAdd' element={<HowToAddTaskPage />}></Route>
           <Route path='HowToDelete' element={<HowToDeleteTaskPage />}></Route>

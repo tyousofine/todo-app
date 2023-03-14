@@ -37,7 +37,7 @@ $headers-font: "acme";
 }
 
 @mixin breakpoint-small {
-  @include breakpoint(700px) {
+  @include breakpoint(600px) {
     @content;
   }
 }
