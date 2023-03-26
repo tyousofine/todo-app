@@ -2,8 +2,7 @@ import React from 'react';
 import TaskDetail from '../TaskDetail';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearTasks } from '../../redux/tasksSlice';
-//TODO: REMOVE THIS TEST CODE
-// import { useNavigate } from 'react-router-dom';
+
 
 import './styles.scss'
 
@@ -17,12 +16,7 @@ export default function Tasks() {
         dispatch(clearTasks())
     }
 
-    // helper function for pnf test button
-    // TODO: remote this test code
-    // const navigate = useNavigate();
-    // const pnfCheck = () => {
-    //     navigate('/asdf')
-    // }
+
 
     return (
         <div>
@@ -48,7 +42,7 @@ export default function Tasks() {
                 {task.length > 0 &&
                     <div>
                         <button onClick={handleClearTasks}>Clear Tasks</button>
-                        {/* <button onClick={pnfCheck}>test pnf</button> */}
+
                     </div>
                 }
                 {task.length === 0 &&
