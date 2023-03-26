@@ -38,7 +38,7 @@ export default function Tasks() {
                         />
                     ))}
                 </div>
-                {/* celar button set to only be visible when tasks on screen */}
+
                 {task.length > 0 &&
                     <div>
                         <button onClick={handleClearTasks}>Clear Tasks</button>
