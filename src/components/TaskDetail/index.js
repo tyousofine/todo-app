@@ -7,13 +7,20 @@ import { MdOutlineCheckCircleOutline } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useDispatch } from 'react-redux';
 import { isComplete, deleteTask } from '../../redux/tasksSlice';
-
+import { update } from '../../database/write';
 
 export default function TaskDetail({ description, status, id, priority }) {
     const dispatch = useDispatch();
     const [selected, setSelected] = useState(priority);
 
-    const handleCompleteStatus = () => {
+
+    const handleCompleteStatus = async () => {
+
+        // change status in DB
+        const data = { status: status === 'Pending' ? status = true : status = false }
+        await update(id, data);
+
+        // change status in redux store
         dispatch(isComplete(id))
     }
 

@@ -1,25 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import uuid from "react-uuid";
+import { loadTasks } from '../database/read';
 
 const tasks = [
-    {
-        id: uuid(),
-        description: "Wash the dishes",
-        status: false,
-        priority: 'green'
-    },
-    {
-        id: uuid(),
-        description: "Cook dinner",
-        status: false,
-        priority: 'yellow'
-    },
-    {
-        id: uuid(),
-        description: "Finish JS4 lab2",
-        status: false,
-        priority: 'red'
-    },
+    // {
+    //     id: uuid(),
+    //     description: "Wash the dishes",
+    //     status: false,
+    //     priority: 'green'
+    // },
+    // {
+    //     id: uuid(),
+    //     description: "Cook dinner",
+    //     status: false,
+    //     priority: 'yellow'
+    // },
+    // {
+    //     id: uuid(),
+    //     description: "Finish JS4 lab2",
+    //     status: false,
+    //     priority: 'red'
+    // },
 ]
 
 export const tasksSlice = createSlice({
@@ -53,9 +54,23 @@ export const tasksSlice = createSlice({
 
         clearTasks: (state, action) => {
             state.tasks = [];
+        },
+
+        setTasks: (state, action) => {
+            state.tasks = action.payload;
+        },
+
+        setPriority: (state, action) => {
+            const id = action.payload;
+            state.tasks.forEach((task) => {
+                if (task.id === id) {
+                    state.priority = task.priority
+                }
+            })
         }
+
     }
 })
 
-export const { deleteTask, isComplete, addTask, clearTasks } = tasksSlice.actions;
+export const { deleteTask, isComplete, addTask, clearTasks, setTasks, setPriority } = tasksSlice.actions;
 export default tasksSlice.reducer;

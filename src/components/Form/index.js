@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import uuid from 'react-uuid';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../redux/tasksSlice';
+import { saveNewTasktoDB } from '../../database/write';
 
 import './styles.scss'
 
@@ -27,7 +27,7 @@ export default function Form() {
     ]
 
     // crate New task
-    const createNewTask = (event) => {
+    const createNewTask = async (event) => {
         event.preventDefault();
 
         setSuccess(false);
@@ -37,29 +37,39 @@ export default function Form() {
         if (description === "") {
             validate.push("Please enter a description")
         }
+
+
         setErrorMessages(validate)
+
+
 
         // validated - proceed
         if (validate.length === 0) {
 
             // object to pass to store:
-            const data = { id: uuid(), description, status, priority }
+            const data = { description, status, priority }
 
-            // pass props
-            dispatch(addTask(data))
-            setSuccess(true);
+            const saveToDB = await saveNewTasktoDB(data);
+            console.log(typeof data.status, 'status from form creation')
+            if (saveToDB) {
+                data.id = saveToDB;
+                // pass props
+                dispatch(addTask(data))
+                setSuccess(true);
 
-            // clear inputs
-            setDescription('');
-            setStatus(false);
-            setPriority('')
+                // clear inputs
+                setDescription('');
+                setStatus(false);
+                setPriority('')
 
-            inputFocus.current.focus();
-
-            // time for successful task creation
-            setTimeout(() => {
-                setSuccess(false)
-            }, 2500)
+                inputFocus.current.focus();
+                // time for successful task creation
+                setTimeout(() => {
+                    setSuccess(false)
+                }, 2500)
+            } else {
+                setErrorMessages(['Could not save data'])
+            }
         }
     }
 
