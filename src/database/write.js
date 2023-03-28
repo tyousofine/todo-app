@@ -1,7 +1,13 @@
 import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs } from "firebase/firestore";
 import { db } from './firestoreConfig';
 
-// db function to save new task to db - called in form component
+/**
+ * saves a new task created by the user to db
+ * @param {*} data 
+ * data received from task creation in form
+ * @returns
+ *  Collectionreference object
+ */
 export async function saveNewTasktoDB(data) {
     try {
         const docRef = await addDoc(collection(db, "tasks"), data);
@@ -12,7 +18,13 @@ export async function saveNewTasktoDB(data) {
     }
 }
 
-// function to update db based on user prompted changes
+/**
+ * update document in Firesore
+ * @param {*} id 
+ * id from selected object
+ * @param {*} data
+ * data from selected object 
+ */
 export async function update(id, data) {
     try {
         const docRef = doc(db, "tasks", id);
@@ -23,6 +35,11 @@ export async function update(id, data) {
     };
 }
 
+/**
+ * Deletes selected task from db
+ * @param {*} id 
+ * id from selected object
+ */
 export async function deleteTaskFromDB(id) {
     try {
         await deleteDoc(doc(db, 'tasks', id))
@@ -32,7 +49,13 @@ export async function deleteTaskFromDB(id) {
     }
 }
 
-// clear all tasks (move tasks from tasks collections to clearedTasks)
+/**
+ * Deletes all tasks from tasks collection and move 
+ * them to clearedTasks colelction
+ * @returns 
+ * empty collection 
+ * CollectionReference Object for clearedTask collection
+ */
 export async function clearTasksFromTasksCollection() {
     try {
         const querySnapshot = await getDocs(collection(db, 'tasks'));
@@ -41,7 +64,6 @@ export async function clearTasksFromTasksCollection() {
             await addDoc(collection(db, "clearedTasks"), doc.data(), doc.id);
             // why can't I use the same id?
         })
-
         querySnapshot.forEach(async (item) => {
             await deleteDoc(doc(db, 'tasks', item.id))
         })
