@@ -23,10 +23,9 @@ body {
 h2 {
   font-family: "acme", sans-serif;
   color: #5c5c5c;
-  font-size: 1.8em;
   margin-top: 3%;
 
   @include breakpoint-small {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 }

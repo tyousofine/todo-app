@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.scss'
 
 // icon imports
@@ -6,16 +6,15 @@ import { MdTimer } from "react-icons/md";
 import { MdOutlineCheckCircleOutline } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useDispatch } from 'react-redux';
+import { setPriority } from '../../redux/tasksSlice';
 import { isComplete, deleteTask } from '../../redux/tasksSlice';
-import { update } from '../../database/write';
+import { update, deleteTaskFromDB } from '../../database/write';
 
 export default function TaskDetail({ description, status, id, priority }) {
     const dispatch = useDispatch();
     const [selected, setSelected] = useState(priority);
 
-
     const handleCompleteStatus = async () => {
-
         // change status in DB
         const data = { status: status === 'Pending' ? status = true : status = false }
         await update(id, data);
@@ -26,9 +25,25 @@ export default function TaskDetail({ description, status, id, priority }) {
 
     // handler for delete task
     const handleDelete = () => {
-        // toDelete(id);
+        //delete from db
+        deleteTaskFromDB(id);
+
+        //delete from store;
         dispatch(deleteTask(id));
     }
+
+    // load priority to redux and db
+
+    useEffect(() => {
+        (async () => {
+            const data = { priority: selected }
+            await update(id, data);
+        })()
+        const color = { id, selected }
+        dispatch(setPriority(color));
+        // eslint-disable-next-line
+    }, [selected]);
+
 
     return (
         // create individual tasks

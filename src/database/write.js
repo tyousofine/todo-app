@@ -1,4 +1,4 @@
-import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs } from "firebase/firestore";
 import { db } from './firestoreConfig';
 
 // db function to save new task to db - called in form component
@@ -16,11 +16,38 @@ export async function saveNewTasktoDB(data) {
 export async function update(id, data) {
     try {
         const docRef = doc(db, "tasks", id);
-
         await updateDoc(docRef, data);
-        console.log('data received from status change inside db: ', data)
     }
-    catch {
-        console.log('db function inside write did not work')
+    catch (error) {
+        throw Error('db function inside write did not work', error)
     };
+}
+
+export async function deleteTaskFromDB(id) {
+    try {
+        await deleteDoc(doc(db, 'tasks', id))
+    }
+    catch (error) {
+        throw Error('something went wrong', error)
+    }
+}
+
+// clear all tasks (move tasks from tasks collections to clearedTasks)
+export async function clearTasksFromTasksCollection() {
+    try {
+        const querySnapshot = await getDocs(collection(db, 'tasks'));
+
+        querySnapshot.forEach(async (doc) => {
+            await addDoc(collection(db, "clearedTasks"), doc.data(), doc.id);
+            // why can't I use the same id?
+        })
+
+        querySnapshot.forEach(async (item) => {
+            await deleteDoc(doc(db, 'tasks', item.id))
+        })
+    }
+    catch (e) {
+        console.error("Error in moving docment document: ", e);
+        return null;
+    }
 }

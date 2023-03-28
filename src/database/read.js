@@ -22,7 +22,7 @@ export async function loadFromDB() {
         return data;
     }
     catch (error) {
-        console.log('something went wrong: ', error)
+        throw Error('something went wrong: ', error)
     }
 
 }

@@ -1,32 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import uuid from "react-uuid";
-import { loadTasks } from '../database/read';
 
-const tasks = [
-    // {
-    //     id: uuid(),
-    //     description: "Wash the dishes",
-    //     status: false,
-    //     priority: 'green'
-    // },
-    // {
-    //     id: uuid(),
-    //     description: "Cook dinner",
-    //     status: false,
-    //     priority: 'yellow'
-    // },
-    // {
-    //     id: uuid(),
-    //     description: "Finish JS4 lab2",
-    //     status: false,
-    //     priority: 'red'
-    // },
-]
 
 export const tasksSlice = createSlice({
     name: 'tasks',
     initialState: {
-        tasks
+        tasks: []
     },
     reducers: {
 
@@ -61,10 +39,10 @@ export const tasksSlice = createSlice({
         },
 
         setPriority: (state, action) => {
-            const id = action.payload;
+            const color = action.payload;
             state.tasks.forEach((task) => {
-                if (task.id === id) {
-                    state.priority = task.priority
+                if (task.id === color.id) {
+                    task.priority = color.selected
                 }
             })
         }

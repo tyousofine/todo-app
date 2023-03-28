@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../redux/tasksSlice';
@@ -13,8 +13,9 @@ export default function Form() {
     const [priority, setPriority] = useState('');
     const [errorMessages, setErrorMessages] = useState('');
     const [success, setSuccess] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
 
-    const inputFocus = useRef();
+
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
@@ -37,15 +38,11 @@ export default function Form() {
         if (description === "") {
             validate.push("Please enter a description")
         }
-
-
         setErrorMessages(validate)
-
-
 
         // validated - proceed
         if (validate.length === 0) {
-
+            setIsSaving(true);
             // object to pass to store:
             const data = { description, status, priority }
 
@@ -62,7 +59,6 @@ export default function Form() {
                 setStatus(false);
                 setPriority('')
 
-                inputFocus.current.focus();
                 // time for successful task creation
                 setTimeout(() => {
                     setSuccess(false)
@@ -71,12 +67,16 @@ export default function Form() {
                 setErrorMessages(['Could not save data'])
             }
         }
+        setIsSaving(false);
     }
 
     // function for navigate back button
     const navigateBack = () => {
         navigate('/')
+    }
 
+    if (isSaving === true) {
+        return <div className='saving-message' >Saving....</div>
     }
 
 
@@ -99,7 +99,8 @@ export default function Form() {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder='create task'
-                        ref={inputFocus}
+                        autoFocus
+
                     />
                 </label>
 
